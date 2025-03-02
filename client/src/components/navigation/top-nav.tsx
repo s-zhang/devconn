@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 export default function TopNav() {
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
   const [toolsMenuOpen, setToolsMenuOpen] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("GPT-3.5");
 
   const tools = [
     "Code Analysis",
@@ -19,6 +20,8 @@ export default function TopNav() {
     "Text Processing",
     "Image Generation",
   ];
+
+  const models = ["GPT-3.5", "GPT-4", "Custom Model"];
 
   const toggleTool = (tool: string) => {
     setSelectedTools((prev) =>
@@ -74,14 +77,19 @@ export default function TopNav() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
-              ChatGPT
+              {selectedModel}
               <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-48">
-            <DropdownMenuItem>GPT-3.5</DropdownMenuItem>
-            <DropdownMenuItem>GPT-4</DropdownMenuItem>
-            <DropdownMenuItem>Custom Model</DropdownMenuItem>
+            {models.map((model) => (
+              <DropdownMenuItem
+                key={model}
+                onClick={() => setSelectedModel(model)}
+              >
+                {model}
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
