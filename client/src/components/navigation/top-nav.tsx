@@ -12,15 +12,15 @@ import { cn } from "@/lib/utils";
 export interface TopNavProps {
   selectedIntegrations: string[];
   setSelectedIntegrations: React.Dispatch<React.SetStateAction<string[]>>;
-  selectedModel: string;
-  setSelectedModel: React.Dispatch<React.SetStateAction<string>>;
+  selectedAiProvider: string;
+  setSelectedAiProvider: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function TopNav({
     selectedIntegrations,
     setSelectedIntegrations,
-    selectedModel,
-    setSelectedModel,
+    selectedAiProvider: selectedAiProvider,
+    setSelectedAiProvider: setSelectedAiProvider,
   }: TopNavProps) {
   const [integrationsMenuOpen, setIntegrationsMenuOpen] = useState(false);
 
@@ -32,7 +32,7 @@ export default function TopNav({
     "Notion"
   ];
 
-  const models = ["GPT-3.5", "GPT-4", "Custom Model"];
+  const aiProviders = ["ChatGPT", "ElevenLabs (Coming soon)"];
 
   const toggleIntegration = (integration: string) => {
     setSelectedIntegrations((prev) =>
@@ -89,17 +89,17 @@ export default function TopNav({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline">
-              {selectedModel}
+              {selectedAiProvider}
               <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-48">
-            {models.map((model) => (
+            {aiProviders.map((provider) => (
               <DropdownMenuItem
-                key={model}
-                onClick={() => setSelectedModel(model)}
+                key={provider}
+                onClick={() => setSelectedAiProvider(provider)}
               >
-                {model}
+                {provider}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
