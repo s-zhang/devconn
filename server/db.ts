@@ -3,7 +3,7 @@ import { open, Database } from 'sqlite';
 
 async function initializeDatabase(isProd: boolean): Promise<Database> {
   const db = await open({
-    filename: isProd ? './db/prod.db' : 'C:/Workspace/devconn/server/db/dev.db', //./db/dev.db',
+    filename: isProd ? './db/prod.db' : './db/dev.db', //./db/dev.db',
     driver: sqlite3.Database
   });
 
